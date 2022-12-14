@@ -1,0 +1,13 @@
+1 . html has 2 types of list 
+     1. Unordered list - where order does not matter like shopping application
+         <ul>
+                 <li>Item 1</li>
+                 <li>Item 2</li>
+                 <li>Item 3</li>
+        </ul>
+     2. Ordered list - where order does matter like step by step reciepe , top 10 TV shows etc.
+        <ol>
+               <li>Item 1</li>
+               <li>Item 2</li>
+               <li>Item 3</li>
+       </ol>
