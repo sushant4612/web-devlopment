@@ -1,0 +1,288 @@
+Basic Syntax
+At the most basic level, CSS is made up of various rules. These rules are made up of a selector (more on this in a bit) 
+and a semi-colon separated list of declarations, with each of those declarations being made up of a property:value pair.
+
+"image"
+https://cdn.statically.io/gh/TheOdinProject/curriculum/05ce472eabf8e04eeb2cc9139e66db884074fd7d/foundations/html_css/css-foundations/imgs/00.jpg
+
+Selectors
+Selectors simply refer to the HTML elements to which CSS rules apply; they’re what is actually being “selected” for each rule. The following subsections 
+don’t cover every selector available, but they’re by far the most common and the ones you should get comfortable using first.
+
+Universal Selector
+The universal selector will select elements of any type, hence the name “universal”, and the syntax for it is a simple asterisk. In the example below,
+every element would have the color: purple; style applied to it.
+
+* {
+  color: purple;
+}
+
+Type Selectors
+A type selector (or element selector) will select all elements of the given element type, and the syntax is just the name of the element:
+
+<!-- index.html -->
+
+<div>Hello, World!</div>
+<div>Hello again!</div>
+<p>Hi...</p>
+<div>Okay, bye.</div>
+
+/* styles.css */
+
+div {
+  color: white;
+}
+
+Here, all three <div> elements would be selected, while the <p> element wouldn’t be.
+
+
+Class Selectors
+Class selectors will select all elements with the given class, which is just an attribute you place on an HTML element. 
+Here’s how you add a class to an HTML tag and select it in CSS:
+
+<!-- index.html -->
+
+<div class="alert-text">
+  Please agree to our terms of service.
+</div>
+
+/* styles.css */
+
+.alert-text {
+  color: red;
+}
+
+Note the syntax for class selectors: a period immediately followed by the case-sensitive value of the class attribute. 
+Classes aren’t required to be unique, so you can use the same class on as many elements as you want.
+
+ID Selectors
+ID selectors are similar to class selectors. They select an element with the given ID, which is another attribute you place on an HTML element:
+
+<!-- index.html -->
+
+<div id="title">My Awesome 90's Page</div>
+/* styles.css */
+
+#title {
+  background-color: red;
+}
+Instead of a period, we use a hashtag immediately followed by the case-sensitive value of the ID attribute.
+
+The major difference between classes and IDs is that an element can only have one ID. An ID cannot be repeated on a single page, 
+and the ID attribute should not contain any whitespace at all.
+
+Grouping Selector
+What if we have two groups of elements that share some of their style declarations?
+
+.read,
+.unread {
+  color: white;
+  background-color: black;
+}
+
+.read {
+  /* several unique declarations */
+}
+
+.unread {
+  /* several unique declarations */
+}
+
+Chaining Selectors
+Another way to use selectors is to chain them as a list without any separation. Let’s say we had the following HTML:
+
+<div>
+  <div class="subsection header">Latest Posts</div>
+  <p class="subsection preview">This is where a preview for a post might go.</p>
+</div>
+We have two elements with the subsection class that have some sort of unique styles, but what if we only want to apply a separate rule to the element that also has header as a second class? Well, we could chain both the class selectors together in our CSS like so:
+
+.subsection.header {
+  color: red;
+}
+This syntax basically works for chaining any combination of selectors, except for chaining more than one type selector.
+
+Descendant Combinator
+Combinators allow us to combine multiple selectors differently than either grouping or chaining them, as they show a relationship between the selectors.
+
+<!-- index.html -->
+
+<div class="ancestor"> <!-- A -->
+  <div class="contents"> <!-- B -->
+    <div class="contents"> <!-- C -->
+    </div>
+  </div>
+</div>
+
+<div class="contents"></div> <!-- D -->
+
+/* styles.css */
+
+.ancestor .contents {
+  /* some declarations */
+}
+
+
+
+
+
+
+
+Properties
+Color and Background-Color -
+The color property sets an element’s text color, while background-color sets, well, the background color of an element.
+Almost. Both of these properties can accept one of several kinds of values. A common one is a keyword, such as an actual 
+color name like red or the transparent keyword. They also accept HEX, RGB, and HSL values.
+p {
+  /* hex example: */
+  color: #1100ff;
+  /* rgb example: */
+  color: rgb(100, 0, 127);
+  /* hsl example: */
+  color: hsl(15, 82%, 56%);
+}
+
+CSS Colors
+
+Hexadecimal Colors-
+A hexadecimal color is specified with: #RRGGBB, where the RR (red), GG (green) and BB (blue) hexadecimal integers specify 
+the components of the color. All values must be between 00 and FF.
+For example, the #0000ff value is rendered as blue, because the blue component is set to its highest value (ff) and the others are set to 00.
+
+Hexadecimal Colors With Transparency
+A hexadecimal color is specified with: #RRGGBB. To add transparency, add two additional digits between 00 and FF.
+
+RGB Colors
+An RGB color value is specified with the rgb() function, which has the following syntax:
+rgb(red, green, blue)
+Each parameter (red, green, and blue) defines the intensity of the color and can be an integer between 0 and 255 or a percentage value (from 0% to 100%).
+For example, the rgb(0,0,255) value is rendered as blue, because the blue parameter is set to its highest value (255) and the others are set to 0.
+Also, the following values define equal color: rgb(0,0,255) and rgb(0%,0%,100%).
+
+RGBA Colors
+RGBA color values are an extension of RGB color values with an alpha channel - which specifies the opacity of the object.
+An RGBA color is specified with the rgba() function, which has the following syntax:
+rgba(red, green, blue, alpha)
+The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (fully opaque).
+
+HSL Colors
+HSL stands for hue, saturation, and lightness - and represents a cylindrical-coordinate representation of colors.
+An HSL color value is specified with the hsl() function, which has the following syntax:
+hsl(hue, saturation, lightness)
+Hue is a degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue. 
+Saturation is a percentage value; 0% means a shade of gray and 100% is the full color. Lightness is also a percentage; 0% is black, 100% is white.
+
+HSLA Colors
+HSLA color values are an extension of HSL color values with an alpha channel - which specifies the opacity of the object.
+An HSLA color value is specified with the hsla() function, which has the following syntax:
+hsla(hue, saturation, lightness, alpha)
+The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (fully opaque).
+
+Predefined/Cross-browser Color Names
+140 color names are predefined in the HTML and CSS color specification.
+For example: blue, red, coral, brown, etc:
+all color website - https://www.w3schools.com/colors/colors_names.asp
+
+
+Typography Basics and Text-Align
+font-family can be a single value or a comma-separated list of values that determine what font an element uses.
+Each font will fall into one of two categories, either a “font family name” like "Times New Roman"
+(we use quotes due to the whitespace between words) or a “generic family name” like sans-serif (generic family names never use quotes).
+
+font-size will, as the property name suggests, set the size of the font. When giving a value to this property, the value should not contain any whitespace, 
+e.g. font-size: 22px has no space between “22” and “px”.
+
+font-weight affects the boldness of text, assuming the font supports the specified weight. This value can be a keyword, e.g. font-weight: 
+bold, or a number between 1 and 1000, e.g. font-weight: 700 (the equivalent of bold). Usually, the numeric values will be in increments 
+of 100 up to 900, though this will depend on the font.
+
+text-align will align text horizontally within an element, and you can use the common keywords you may have come across in word 
+processors as the value for this property, e.g. text-align: center.
+
+
+Image Height and Width
+Images aren’t the only elements that we can adjust the height and width on, but we want to focus on them specifically in this case.
+By default, an <img> element’s height and width values will be the same as the actual image file’s height and width. If you wanted 
+to adjust the size of the image without causing it to lose its proportions, you would use a value of “auto” for the height property and adjust the width value:
+img {
+  height: auto;
+  width: 500px;
+}
+For example, if an image’s original size was 500px height and 1000px width, using the above CSS would result in a height of 250px.
+
+
+The Cascade of CSS
+The cascade is what determines which rules actually get applied to our HTML. There are different factors that the cascade uses to determine this, three of 
+which we’ll go over to hopefully help you avoid (as many of) those frustrating “I hate CSS” moments.
+
+Specificity
+A CSS declaration that is more specific will take precedence over less specific ones. Inline styles, which we will go over more in the Adding CSS to HTML
+section towards the end of the lesson, have the highest specificity compared to selectors, while each type of selector has its own specificity level that
+contributes to how specific a declaration is. 
+ID selectors (most specific selector)
+Class selectors
+Type selectors
+
+Let’s take a look at a few quick examples to visualize how specificity works. Consider the following HTML and CSS code:
+
+<!-- index.html -->
+
+<div class="main">
+  <div class="list subsection"></div>
+</div>
+
+/* rule 1 */
+.subsection {
+  color: blue;
+}
+
+/* rule 2 */
+.main .list {
+  color: red;
+}
+In the example above, both rules are using only class selectors, but rule 2 is more specific because it is using more class selectors, 
+so the color: red; declaration would take precedence.
+Note: When comparing selectors, you may come across special symbols for the universal selector (*) as well as combinators (+, ~, >, and an empty space). 
+These symbols do not add any specificity in and of themselves.
+
+Inheritance
+Inheritance refers to certain CSS properties that, when applied to an element, are inherited by that element’s descendants, 
+even if we don’t explicitly write a rule for those descendants. Typography based properties (color, font-size, font-family, etc.)
+are usually inherited, while most other properties aren’t.
+
+The exception to this is when directly targeting an element, as this always beats inheritance:
+
+<!-- index.html -->
+
+<div id="parent">
+  <div class="child"></div>
+</div>
+/* styles.css */
+
+#parent {
+  color: red;
+}
+
+.child {
+  color: blue;
+}Despite the parent element having a higher specificity with an ID, the child element would have the color: blue style applied
+ since that declaration directly targets it, while color: red from the parent is only inherited.
+
+Rule Order
+The final factor, the end of the line, the tie-breaker of the tie-breaker. Let’s say that after every other factor has been taken into account, 
+there are still multiple conflicting rules targeting an element. How does the cascade determine which rule to apply?
+
+Really simply, actually. Whichever rule was the last defined is the winner.
+
+/* styles.css */
+
+.alert {
+  color: red;
+}
+
+.warning {
+  color: yellow;
+}
+For an element that has both the alert and warning classes, the cascade would run through every other factor, 
+including inheritance (none here) and specificity (neither rule is more specific than the other). Since the .warning rule was the last one defined, 
+and no other factor was able to determine which rule to apply, it’s the one that gets applied to the element.
