@@ -1,0 +1,22 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.box1,.box2{
+    height: 200px;
+    width: 200px;
+}
+
+.box1{
+    background-color: red;
+    padding: 20px;
+}
+
+.box2{
+    background-color: blue;
+}
+
+span{
+    background-color: yellow;
+    border: 10px black;
+}
